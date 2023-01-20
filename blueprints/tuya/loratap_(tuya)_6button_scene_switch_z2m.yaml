@@ -118,7 +118,7 @@ blueprint:
       default: []
       selector:
         action: {}
-  # source_url: https://github.com/AramidX/ha-blueprint/blob/4de1fb2c9fe1d96a58f09c28b1d4a7760e0e9d2b/blueprints/tuya/tuya_4button_scene_switch_z2m.yaml
+  source_url: https://github.com/enipos/ha-blueprint/blob/main/blueprints/tuya/loratap_(tuya)_6button_scene_switch_z2m.yaml
 mode: restart
 max_exceeded: silent
 trigger:
