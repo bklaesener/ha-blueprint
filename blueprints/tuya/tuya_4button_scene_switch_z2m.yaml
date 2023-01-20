@@ -1,88 +1,124 @@
 blueprint:
-  name: Zigbee2MQTT - Tuya 4-Button Scene Switch
-  description: Automate your Tuya 4-Button Scene Switch via Zigbee2MQTT.
+  name: Zigbee2MQTT - LoraTap (Tuya) 6-Button Scene Switch
+  description: Automate your LoraTap (Tuya) 6-Button Scene Switch via Zigbee2MQTT.
   domain: automation
   input:
     switch:
-      name: Tuya 4-Button Scene Switch
-      description: Tuya 4-Button Scene Switch to use
+      name: LoraTap (Tuya) 6-Button Scene Switch
+      description: LoraTap (Tuya) 6-Button Scene Switch to use
       selector:
         entity:
           integration: mqtt
           domain: sensor
     button_one_short_press:
       name: Single Press - Button 1
-      description: Action to run on button 1 (lower-left) single press
+      description: Action to run on button 1 (upper-left) single press
       default: []
       selector:
         action: {}
     button_one_double_press:
       name: Double Press - Button 1
-      description: Action to run on button 1 (lower-left) double press
+      description: Action to run on button 1 (upper-left) double press
       default: []
       selector:
         action: {}
     button_one_long_press:
       name: Long Press - Button 1
-      description: Action to run on button 1 (lower-left) long press
+      description: Action to run on button 1 (upper-left) long press
       default: []
       selector:
         action: {}
     button_two_short_press:
       name: Single Press - Button 2
-      description: Action to run on button 2 (lower-right) single press
+      description: Action to run on button 2 (upper-right) single press
       default: []
       selector:
         action: {}
     button_two_double_press:
       name: Double Press - Button 2
-      description: Action to run on button 2 (lower-right) double press
+      description: Action to run on button 2 (upper-right) double press
       default: []
       selector:
         action: {}
     button_two_long_press:
       name: Long Press - Button 2
-      description: Action to run on button 2 (lower-right) long press
+      description: Action to run on button 2 (upper-right) long press
       default: []
       selector:
         action: {}
     button_three_short_press:
       name: Single Press - Button 3
-      description: Action to run on button 3 (upper-right) single press
+      description: Action to run on button 3 (middle-left) single press
       default: []
       selector:
         action: {}
     button_three_double_press:
       name: Double Press - Button 3
-      description: Action to run on button 3 (upper-right) double press
+      description: Action to run on button 3 (middle-left) double press
       default: []
       selector:
         action: {}
     button_three_long_press:
       name: Long Press - Button 3
-      description: Action to run on button 3 (upper-right) long press
+      description: Action to run on button 3 (middle-left) long press
       default: []
       selector:
         action: {}
     button_four_short_press:
       name: Single Press - Button 4
-      description: Action to run on button 4 (upper-left) single press
+      description: Action to run on button 4 (middle-right) single press
       default: []
       selector:
         action: {}
     button_four_double_press:
       name: Double Press - Button 4
-      description: Action to run on button 4 (upper-left) double press
+      description: Action to run on button 4 (middle-right) double press
       default: []
       selector:
         action: {}
     button_four_long_press:
       name: Long Press - Button 4
-      description: Action to run on button 4 (upper-left) long press
+      description: Action to run on button 4 (middle-right) long press
       default: []
       selector:
         action: {}
-  source_url: https://github.com/AramidX/ha-blueprint/blob/main/blueprints/tuya/tuya_4button_scene_switch_z2m.yaml
+    button_five_short_press:
+      name: Single Press - Button 5
+      description: Action to run on button 5 (lower-left) single press
+      default: []
+      selector:
+        action: {}
+    button_five_double_press:
+      name: Double Press - Button 5
+      description: Action to run on button 5 (lower-left) double press
+      default: []
+      selector:
+        action: {}
+    button_five_long_press:
+      name: Long Press - Button 5
+      description: Action to run on button 5 (lower-left) long press
+      default: []
+      selector:
+        action: {}
+    button_six_short_press:
+      name: Single Press - Button 6
+      description: Action to run on button 6 (lower-right) single press
+      default: []
+      selector:
+        action: {}
+    button_six_double_press:
+      name: Double Press - Button 6
+      description: Action to run on button 6 (lower-right) double press
+      default: []
+      selector:
+        action: {}
+    button_six_long_press:
+      name: Long Press - Button 6
+      description: Action to run on button 6 (lower-right) long press
+      default: []
+      selector:
+        action: {}
+  # source_url: https://github.com/AramidX/ha-blueprint/blob/4de1fb2c9fe1d96a58f09c28b1d4a7760e0e9d2b/blueprints/tuya/tuya_4button_scene_switch_z2m.yaml
 mode: restart
 max_exceeded: silent
 trigger:
@@ -106,6 +142,12 @@ action:
     - "{{ command == '4_single' }}"
     sequence: !input "button_four_short_press"
   - conditions: 
+    - "{{ command == '5_single' }}"
+    sequence: !input "button_five_short_press"
+  - conditions: 
+    - "{{ command == '6_single' }}"
+    sequence: !input "button_six_short_press"
+  - conditions: 
     - "{{ command == '1_double' }}"
     sequence: !input "button_one_double_press"
   - conditions: 
@@ -118,6 +160,12 @@ action:
     - "{{ command == '4_double' }}"
     sequence: !input "button_four_double_press"
   - conditions: 
+    - "{{ command == '5_double' }}"
+    sequence: !input "button_five_double_press"
+  - conditions: 
+    - "{{ command == '6_double' }}"
+    sequence: !input "button_six_double_press"
+  - conditions: 
     - "{{ command == '1_hold' }}"
     sequence: !input "button_one_long_press"
   - conditions: 
@@ -129,3 +177,9 @@ action:
   - conditions: 
     - "{{ command == '4_hold' }}"
     sequence: !input "button_four_long_press"
+  - conditions: 
+    - "{{ command == '5_hold' }}"
+    sequence: !input "button_five_long_press"
+  - conditions: 
+    - "{{ command == '6_hold' }}"
+    sequence: !input "button_six_long_press"
